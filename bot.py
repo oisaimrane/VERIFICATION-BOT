@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 from flask import Flask
-import os
 import threading
+import os
 
 # Bot setup
 intents = discord.Intents.default()
@@ -12,6 +12,13 @@ intents.guilds = True
 intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
+
+# Initialize Flask app
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
 
 # Function to run the Flask web server
 def run():
@@ -104,4 +111,8 @@ async def clear_verification(ctx):
 
     verification_message_id = None
     verification_role_id = None
-   
+    await ctx.send("Verification setup has been cleared.")
+
+
+# Run the bot
+bot.run(os.getenv("DISCORD_TOKEN"))
