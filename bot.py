@@ -45,4 +45,4 @@ async def on_raw_reaction_remove(payload):
             print(f"Removed {role.name} from {member.display_name} ❌")
 
 # Replace 'your-bot-token' with your bot's token
-bot.run('your-bot-token')
+bot.run(os.getenv("DISCORD_TOKEN"))
