@@ -1,6 +1,7 @@
 import discord 
 from discord.ext import commands
 import os
+from flask import Flask
 
 # Bot setup
 intents = discord.Intents.default()
@@ -10,6 +11,20 @@ intents.guilds = True
 intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot is running!"
+
+def run_server():
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
+# Start the Flask server in a separate thread
+thread = threading.Thread(target=run_server)
+thread.start()
 
 # Replace with your message ID and role ID
 MESSAGE_ID = 1309133309858549791  # Replace with the ID of the message to watch
