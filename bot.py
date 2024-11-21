@@ -1,5 +1,6 @@
 import discord 
 from discord.ext import commands
+import os
 
 # Bot setup
 intents = discord.Intents.default()
