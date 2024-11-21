@@ -111,7 +111,10 @@ async def clear_verification(ctx):
     verification_message_id = None
     verification_role_id = None
     await ctx.send("Verification setup has been cleared.")
-
+    
+@bot.command()
+async def ping(ctx):
+    await ctx.send("Pong!")
 
 # Run the bot
 bot.run(os.getenv("DISCORD_TOKEN"))
